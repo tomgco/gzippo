@@ -13,7 +13,7 @@ In your express/connect server setup, use as follows:
 	
 	//Replace the static provider with gzippo's
 	//app.use(express.static(__dirname + '/public'));
-	app.use(gzippo.staticGzip({ src: __dirname + '/public' }));
+	app.use(gzippo.staticGzip(__dirname + '/public'));
 
 Options:
 
