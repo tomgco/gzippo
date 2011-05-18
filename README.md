@@ -9,6 +9,7 @@ gzippo pronounced `g-zippo` is a gzip middleware for Connect using Compress for 
 ### Usage
 
 In your express/connect server setup, use as follows:
+	
 	var gzippo = require('gzippo');
 	
 	//Replace the static provider with gzippo's
