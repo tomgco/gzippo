@@ -3,7 +3,7 @@
 gzippo pronounced `g-zippo` is a gzip middleware for Connect using Compress for better performace.
 
 ## Installation
-	//Currently not up
+	
 	$ npm install gzippo
 
 ### Usage
