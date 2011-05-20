@@ -1,5 +1,7 @@
 # gzippo
 
+[![Flattr Button](http://api.flattr.com/button/button-compact-static-100x17.png "Flattr This!")](https://flattr.com/thing/282348/gzippo-node-js-gzip-module "gzippo - node.js gzip module")
+
 gzippo pronounced `g-zippo` is a gzip middleware for Connect using Compress for better performace.
 
 ## Installation
