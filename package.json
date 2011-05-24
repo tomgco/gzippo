@@ -13,6 +13,7 @@
 "main" : "./index.js",
 "dependencies" :
 	{
-		"compress" : "0.1.9"
+		"compress" : "0.1.9",
+		"mime" : "1.2.2"
 	}
 }
