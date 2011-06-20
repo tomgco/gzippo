@@ -15,5 +15,12 @@
 	{
 		"compress" : "0.1.9",
 		"mime" : "1.2.2"
+	},
+"devDependencies":
+	{
+		"expresso": "0.7.6",
+		"should": "0.2.1",
+		"connect": "1.4.4",
+		"express": "2.3.11"
 	}
 }
