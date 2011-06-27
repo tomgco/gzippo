@@ -1,9 +1,8 @@
 # gzippo
 
-Found gzippo helpful? Why don't you [tip us](http://tiptheweb.org/tip/?link=https%3A%2F%2Fgithub.com%2Ftomgallacher%2Fgzippo&title=Tip%20to%20Support%20gzippo) [![Flattr Button](http://api.flattr.com/button/button-compact-static-100x17.png "Flattr This!")](https://flattr.com/thing/282348/gzippo-node-js-gzip-module "gzippo - node.js gzip module")
-Bitcoin me: 1DnVpXSGubdyBSbyuJZNMNzkAVrwPJhaUL
+gzippo pronounced `g-zippo` is a gzip middleware for Connect / expressjs using node-compress for better performace.
 
-gzippo pronounced `g-zippo` is a gzip middleware for Connect using Compress for better performace.
+gzippo currently only supports only gzipping static content files however a release is in progress to introduce streaming support.
 
 ## Installation
 	
@@ -28,6 +27,9 @@ Currently the gzipped version is created and stored in memory. This is not final
 up and about. A version which will gzip text/html after res.render() / res.end() is in progress.
 	
 [node-compress](https://github.com/waveto/node-compress) gzip library is used for gzipping.
+
+Found gzippo helpful? Why don't you [tip us](http://tiptheweb.org/tip/?link=https%3A%2F%2Fgithub.com%2Ftomgallacher%2Fgzippo&title=Tip%20to%20Support%20gzippo) [![Flattr Button](http://api.flattr.com/button/button-compact-static-100x17.png "Flattr This!")](https://flattr.com/thing/282348/gzippo-node-js-gzip-module "gzippo - node.js gzip module")
+Bitcoin me: 1DnVpXSGubdyBSbyuJZNMNzkAVrwPJhaUL
 
 ## License
 
