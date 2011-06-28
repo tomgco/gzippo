@@ -33,7 +33,7 @@ up and about. A version which will gzip text/html after res.render() / res.end()
 
 (The MIT License)
 
-Copyright (c) 2011 Tom Gallacher &lt;<http://www.tomgallacher.info>&gt;
+Copyright (c) 2011 Tom Gallacher &lt;<http://www.tomg.co>&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
