@@ -88,5 +88,26 @@ module.exports = {
 				res.headers.should.have.property('content-length', '15');
 			}
 		);
+	},
+	'requesting gzipped utf-8 file succeeds': function() {
+		assert.response(app,
+			{
+				url: '/utf8.txt',
+				headers: {
+					'Accept-Encoding':"gzip"
+				}
+			},
+			function(res){
+				var gzippedData = res.body;
+				assert.response(app, { url: '/utf8.txt.gz' }, function(res) {
+					assert.equal(gzippedData, res.body, "Data is not gzipped");
+				});
+			
+				res.statusCode.should.equal(200);
+				res.headers.should.have.property('content-type', 'text/plain; charset=UTF-8');
+				res.headers.should.have.property('content-length', '2031');
+				res.headers.should.have.property('content-encoding', 'gzip');
+			}
+		);
 	}
 };
