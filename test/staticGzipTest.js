@@ -109,5 +109,29 @@ module.exports = {
 				res.headers.should.have.property('content-encoding', 'gzip');
 			}
 		);
+	},
+	'requesting gzipped utf-8 file second time caches': function() {
+		assert.response(app,
+			{
+				url: '/utf8.txt',
+				headers: {
+					'Accept-Encoding':"gzip",
+				}
+			},
+			function(res) {
+				assert.response(app,
+					{
+						url: '/utf8.txt',
+						headers: {
+							'Accept-Encoding':"gzip",
+							'If-Modified-Since': 'Mon, 28 Dec 2020 01:00:00 GMT'
+						}
+					},
+					function(res) {
+						res.statusCode.should.equal(304);
+					}
+				);
+			}
+		);
 	}
 };
