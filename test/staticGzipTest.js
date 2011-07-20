@@ -110,27 +110,41 @@ module.exports = {
 			}
 		);
 	},
-	'requesting gzipped utf-8 file second time caches': function() {
+	'requesting gzipped utf-8 file returns 304': function() {
 		assert.response(app,
 			{
 				url: '/utf8.txt',
 				headers: {
-					'Accept-Encoding':"gzip",
+					'Accept-Encoding': "gzip"
 				}
 			},
 			function(res) {
+				res.statusCode.should.equal(200);
 				assert.response(app,
 					{
 						url: '/utf8.txt',
 						headers: {
-							'Accept-Encoding':"gzip",
-							'If-Modified-Since': 'Mon, 28 Dec 2020 01:00:00 GMT'
+							'Accept-Encoding': "gzip",
+							'If-Modified-Since': res.headers['last-modified']
 						}
 					},
-					function(res) {
-						res.statusCode.should.equal(304);
+					function(res2) {
+						res2.statusCode.should.equal(304);
 					}
 				);
+			}
+		);
+	},
+	'requesting gzipped utf-8 file returns 200': function() {
+		assert.response(app,
+			{
+				url: '/utf8.txt',
+				headers: {
+					'Accept-Encoding': "gzip"
+				}
+			},
+			function(res) {
+				res.statusCode.should.equal(200);
 			}
 		);
 	}
