@@ -22,6 +22,7 @@ Options:
 
 - `matchType` - A regular expression tested against the Content-Type header to determine whether the response should be gzipped or not. The default value is `/text|javascript|json/`.
 - `maxAge` - cache-control max-age directive, defaulting to 1 day
+- `clientMaxAge` - browser cache-control max-age directive, defaulting to 1 week
 
 Currently the gzipped version is created and stored in memory. This is not final and was done to get a working version
 up and about. A version which will gzip text/html after res.render() / res.end() is in progress.
