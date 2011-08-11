@@ -20,7 +20,7 @@ In your express/connect server setup, use as follows:
 
 Options:
 
-- `matchType` - A regular expression tested against the Content-Type header to determine whether the response should be gzipped or not. The default value is `/text|javascript|json/`.
+- `contentTypeMatch` - A regular expression tested against the Content-Type header to determine whether the response should be gzipped or not. The default value is `/text|javascript|json/`.
 - `maxAge` - cache-control max-age directive, defaulting to 1 day
 - `clientMaxAge` - browser cache-control max-age directive, defaulting to 1 week
 
