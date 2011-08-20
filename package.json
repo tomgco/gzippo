@@ -1,6 +1,6 @@
 {
 "name" : "gzippo",
-"version" : "0.0.4",
+"version" : "0.0.5",
 "author" : "Tom Gallacher",
 "description" : "Gzip middleware for Connect using Compress for better performace.",
 "homepage" : "http://www.tomg.co/gzippo",
