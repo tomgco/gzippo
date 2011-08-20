@@ -11,7 +11,7 @@ var staticProvider,
 		crypto = require('crypto'),
 		fs = require('fs'),
 		shasum = crypto.createHash('sha1');
-		
+
 try {
 	staticProvider = require('connect');
 } catch (e) {
@@ -42,7 +42,7 @@ module.exports = {
 				assert.response(app, { url: '/user.gzip' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
-			
+
 				res.statusCode.should.equal(200);
 				res.headers.should.have.property('content-type', 'application/json');
 				res.headers.should.have.property('content-length', '69');
@@ -63,7 +63,7 @@ module.exports = {
 				assert.response(app, { url: '/test.js.gzip' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
-			
+
 				res.statusCode.should.equal(200);
 				res.headers.should.have.property('content-type', 'application/javascript');
 				res.headers.should.have.property('content-length', '35');
@@ -78,12 +78,12 @@ module.exports = {
 			},
 			function(res){
 				var gzippedData = res.body;
-				
+
 				fs.readFile(fixturesPath + '/test.js', function (err, data) {
 					if (err) throw err;
 					assert.equal(gzippedData, data, "Data returned does not match file data on filesystem");
 				});
-			
+
 				res.statusCode.should.equal(200);
 				res.headers.should.have.property('content-length', '15');
 			}
@@ -102,7 +102,7 @@ module.exports = {
 				assert.response(app, { url: '/utf8.txt.gz' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
-			
+
 				res.statusCode.should.equal(200);
 				res.headers.should.have.property('content-type', 'text/plain; charset=UTF-8');
 				res.headers.should.have.property('content-length', '2031');
@@ -145,6 +145,16 @@ module.exports = {
 			},
 			function(res) {
 				res.statusCode.should.equal(200);
+			}
+		);
+	},
+	'ensuring max age is set on resources which are passed to the default static content provider': function() {
+		assert.response(app,
+			{
+				url: '/tomg.co.png'
+			},
+			function(res) {
+				res.headers.should.have.property('cache-control', 'public, max-age=86400');
 			}
 		);
 	}
