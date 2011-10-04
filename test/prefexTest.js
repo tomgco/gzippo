@@ -37,7 +37,7 @@ module.exports = {
 			function(res){
 				var gzippedData = res.body;
 				res.statusCode.should.equal(200);
-				res.headers.should.have.property('content-type', 'application/json');
+				res.headers.should.have.property('content-type', 'application/json; charset=UTF-8');
 				res.headers.should.have.property('content-length', '69');
 				res.headers.should.have.property('content-encoding', 'gzip');
 			}
@@ -58,7 +58,7 @@ module.exports = {
 			function(res){
 				var gzippedData = res.body;
 				res.statusCode.should.equal(200);
-				res.headers.should.have.property('content-type', 'application/json');
+				res.headers.should.have.property('content-type', 'application/json; charset=UTF-8');
 				res.headers.should.have.property('content-length', '69');
 				res.headers.should.have.property('content-encoding', 'gzip');
 			}
@@ -79,7 +79,7 @@ module.exports = {
 			function(res){
 				var gzippedData = res.body;
 				res.statusCode.should.equal(200);
-				res.headers.should.have.property('content-type', 'application/json');
+				res.headers.should.have.property('content-type', 'application/json; charset=UTF-8');
 				res.headers.should.have.property('content-length', '69');
 				res.headers.should.have.property('content-encoding', 'gzip');
 			}
