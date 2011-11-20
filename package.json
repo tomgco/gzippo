@@ -9,17 +9,17 @@
 		"type": "git",
 		"url": "git://github.com/tomgallacher/gzippo.git"
   },
-"engines" : { "node" : "*" },
+"engines" : { "node" : "0.6" },
 "main" : "./index.js",
 "dependencies" :
 	{
-		"mime" : "1.2.2"
+		"mime" : "1.2"
 	},
 "devDependencies":
 	{
-		"expresso": "*",
-		"should": "*",
-		"connect": "*",
-		"express": "*"
+		"expresso": "0.9",
+		"should": "0.3",
+		"connect": "1.8",
+		"express": "2.5"
 	}
 }
