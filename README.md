@@ -1,4 +1,4 @@
-# gzippo
+# gzippo [![Build Status](https://secure.travis-ci.org/tomgallacher/gzippo.png)](https://secure.travis-ci.org/tomgallacher/gzippo)
 
 gzippo pronounced `g-zippo` is a gzip middleware for Connect / expressjs using node-compress for better performace.
 

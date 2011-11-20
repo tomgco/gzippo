@@ -9,7 +9,7 @@
 		"type": "git",
 		"url": "git://github.com/tomgallacher/gzippo.git"
   },
-"engines" : { "node" : ">= 0.4" },
+"engines" : { "node" : ">= 0.4.x" },
 "main" : "./index.js",
 "dependencies" :
 	{
