@@ -24,13 +24,13 @@ try {
 
 var fixturesPath = __dirname + '/fixtures';
 
-var app = staticProvider.createServer(
-	gzippo.staticGzip(fixturesPath)
-);
+function getApp() {
+	return staticProvider.createServer(gzippo.staticGzip(fixturesPath));
+}
 
 module.exports = {
 	'requesting gzipped json file succeeds': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/user.json',
 				headers: {
@@ -39,10 +39,10 @@ module.exports = {
 			},
 			function(res){
 				var gzippedData = res.body;
-				assert.response(app, { url: '/user.gzip' }, function(res) {
+				assert.response(getApp(), { url: '/user.gzip' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
-
+				console.log(res.body);
 				res.statusCode.should.equal(200);
 				res.headers.should.have.property('content-type', 'application/json; charset=UTF-8');
 				res.headers.should.have.property('content-length', '69');
@@ -51,7 +51,7 @@ module.exports = {
 		);
 	},
 	'requesting gzipped js file succeeds': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/test.js',
 				headers: {
@@ -60,7 +60,7 @@ module.exports = {
 			},
 			function(res){
 				var gzippedData = res.body;
-				assert.response(app, { url: '/test.js.gzip' }, function(res) {
+				assert.response(getApp(), { url: '/test.js.gzip' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
 
@@ -72,7 +72,7 @@ module.exports = {
 		);
 	},
 	'requesting js file without gzip succeeds': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/test.js'
 			},
@@ -90,7 +90,7 @@ module.exports = {
 		);
 	},
 	'requesting gzipped utf-8 file succeeds': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/utf8.txt',
 				headers: {
@@ -99,7 +99,7 @@ module.exports = {
 			},
 			function(res){
 				var gzippedData = res.body;
-				assert.response(app, { url: '/utf8.txt.gz' }, function(res) {
+				assert.response(getApp(), { url: '/utf8.txt.gz' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
 
@@ -111,7 +111,7 @@ module.exports = {
 		);
 	},
 	'requesting gzipped utf-8 file returns 304': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/utf8.txt',
 				headers: {
@@ -120,7 +120,7 @@ module.exports = {
 			},
 			function(res) {
 				res.statusCode.should.equal(200);
-				assert.response(app,
+				assert.response(getApp(),
 					{
 						url: '/utf8.txt',
 						headers: {
@@ -136,7 +136,7 @@ module.exports = {
 		);
 	},
 	'requesting gzipped utf-8 file returns 200': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/utf8.txt',
 				headers: {
@@ -149,7 +149,7 @@ module.exports = {
 		);
 	},
 	'ensuring max age is set on resources which are passed to the default static content provider': function() {
-		assert.response(app,
+		assert.response(getApp(),
 			{
 				url: '/tomg.co.png'
 			},
