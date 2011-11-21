@@ -1,6 +1,6 @@
 # gzippo [![Build Status](https://secure.travis-ci.org/tomgallacher/gzippo.png)](https://secure.travis-ci.org/tomgallacher/gzippo)
 
-gzippo pronounced `g-zippo` is a gzip middleware for Connect / expressjs using node-compress for better performace.
+gzippo pronounced `g-zippo` is a gzip middleware for Connect / expressjs using node-compress for better performace, in node 0.6 and up will be using the new zlib api.
 
 gzippo currently only supports only gzipping static content files however a release is in progress to introduce streaming support.
 

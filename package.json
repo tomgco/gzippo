@@ -2,7 +2,7 @@
 "name" : "gzippo",
 "version" : "0.1.0",
 "author" : "Tom Gallacher",
-"description" : "Gzip middleware for Connect using Compress for better performace.",
+"description" : "Gzip middleware for Connect using the native zlib library in node >= 0.6",
 "homepage" : "http://www.tomg.co/gzippo",
 "repository":
   {
