@@ -32,10 +32,10 @@ Options:
 Currently the gzipped version is created and stored in memory. This is not final and was done to get a working version
 up and about. A version which will gzip text/html after res.render() / res.end() is in progress.
 
-[node-compress](https://github.com/waveto/node-compress) gzip library is used for gzipping.
-
 Found gzippo helpful? Why don't you [tip us](http://tiptheweb.org/tip/?link=https%3A%2F%2Fgithub.com%2Ftomgallacher%2Fgzippo&title=Tip%20to%20Support%20gzippo) [![Flattr Button](http://api.flattr.com/button/flattr-badge-large.png "Flattr This!")](https://flattr.com/thing/282348/gzippo-node-js-gzip-module "gzippo - node.js gzip module")
 Bitcoin me: 1DnVpXSGubdyBSbyuJZNMNzkAVrwPJhaUL
+
+Gzippo now uses the native Zlib support found in node >= 0.6
 
 ## License
 
