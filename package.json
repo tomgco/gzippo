@@ -13,14 +13,14 @@
 "main" : "./index.js",
 "dependencies" :
 	{
-		"compress" : "0.1.9",
-		"mime" : "1.2.2"
+		"compress" : ">= 0.1.9",
+		"mime" : ">= 1.2.2"
 	},
 "devDependencies":
 	{
-		"expresso": "0.8.1",
-		"should": "0.2.1",
-		"connect": "1.6.0",
-		"express": "2.4.3"
+		"expresso": ">= 0.8.1",
+		"should": ">= 0.2.1",
+		"connect": ">= 1.6.0",
+		"express": ">= 2.4.3"
 	}
 }
