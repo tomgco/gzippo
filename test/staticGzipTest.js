@@ -159,7 +159,7 @@ module.exports = {
 		);
 	},
 	'Ensuring that when viewing a directory a redirect works correctly': function() {
-		assert.response(getApp(),
+		assert.response(app,
 			{
 				url: '/js'
 			},
