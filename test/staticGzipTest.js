@@ -157,5 +157,15 @@ module.exports = {
 				res.headers.should.have.property('cache-control', 'public, max-age=86400');
 			}
 		);
+	},
+	'Ensuring that when viewing a directory a redirect works correctly': function() {
+		assert.response(getApp(),
+			{
+				url: '/js'
+			},
+			function(res) {
+				res.statusCode.should.not.equal(301);
+			}
+		);
 	}
 };
