@@ -42,7 +42,6 @@ module.exports = {
 				assert.response(getApp(), { url: '/user.gzip' }, function(res) {
 					assert.equal(gzippedData, res.body, "Data is not gzipped");
 				});
-				console.log(res.body);
 				res.statusCode.should.equal(200);
 				res.headers.should.have.property('content-type', 'application/json; charset=UTF-8');
 				res.headers.should.have.property('content-length', '69');
