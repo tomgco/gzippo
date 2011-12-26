@@ -13,6 +13,7 @@ Please note that gzippo@0.0.X branch will only be tested for nodejs 0.4, where t
 	$ npm install gzippo
 
 ### Usage
+#### Static Gzip
 
 In your express/connect server setup, use as follows:
 
@@ -30,12 +31,18 @@ Options:
 - `prefix` - A url prefix. If you want all your static content in a root path such as /resource/. Any url paths not matching will be ignored
 
 Currently the gzipped version is created and stored in memory. This is not final and was done to get a working version
-up and about. A version which will gzip text/html after res.render() / res.end() is in progress.
-
-Found gzippo helpful? Why don't you [tip us](http://tiptheweb.org/tip/?link=https%3A%2F%2Fgithub.com%2Ftomgallacher%2Fgzippo&title=Tip%20to%20Support%20gzippo) [![Flattr Button](http://api.flattr.com/button/flattr-badge-large.png "Flattr This!")](https://flattr.com/thing/282348/gzippo-node-js-gzip-module "gzippo - node.js gzip module")
-Bitcoin me: 1DnVpXSGubdyBSbyuJZNMNzkAVrwPJhaUL
+up and about.
 
 Gzippo now uses the native Zlib support found in node >= 0.6
+
+#### Streaming Gzip
+
+Starting in Connect 2.X Expressjs has the ability to use a streaming gzip module provided natively by connect. As this 2.X branch is not currently stable I have back ported the compress.js component into gzippo.
+
+	app.use(gzippo.staticGzip(__dirname + '/public'));
+	app.use(gzippo.compress());
+
+This has no caching and is currently unsupported as it will be included in a future connect 1.X release, up until then compress.js will be included in gzippo. 
 
 ## License
 
