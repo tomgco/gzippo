@@ -153,7 +153,7 @@ module.exports = {
 				url: '/tomg.co.png'
 			},
 			function(res) {
-				res.headers.should.have.property('cache-control', 'public, max-age=86400');
+				res.headers.should.have.property('cache-control', 'public, max-age=604800');
 			}
 		);
 	},
