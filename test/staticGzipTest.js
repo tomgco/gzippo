@@ -167,5 +167,15 @@ module.exports = {
 				res.statusCode.should.not.equal(301);
 			}
 		);
+	},
+	'ensuring that gzippo works with a space in a static content path': function() {
+		assert.response(getApp(),
+			{
+				url: '/space%20the%20final%20frontier/tomg.co.png'
+			},
+			function(res) {
+				res.statusCode.should.not.equal(404);
+			}
+		);
 	}
 };
