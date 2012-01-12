@@ -169,7 +169,7 @@ module.exports = {
 		);
 	},
 	'ensuring that gzippo works with a space in a static content path': function() {
-		assert.response(getApp(),
+		assert.response(app,
 			{
 				url: '/space%20the%20final%20frontier/tomg.co.png'
 			},
