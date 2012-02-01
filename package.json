@@ -18,16 +18,16 @@
 "engines" : { "node" : ">= 0.5 < 0.9" },
 "scripts":
 	{
-		"test": "mocha"
+		"test": "expresso"
 	},
 "main" : "./index.js",
 "dependencies" :
 	{},
 "devDependencies":
 	{
-		"expresso": ">= 0.9",
-		"should": ">= 0.3",
-		"connect": ">= 1.8",
-		"express": ">= 2.5"
+		"expresso": "*",
+		"should": "*",
+		"connect": "*",
+		"express": "*"
 	}
 }
