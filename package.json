@@ -25,9 +25,8 @@
 	{},
 "devDependencies":
 	{
-		"expresso": "*",
-		"should": "*",
-		"connect": "*",
-		"express": "*"
+		"expresso": ">= 0.9",
+		"should": ">= 0.3",
+		"connect": "*"
 	}
 }
