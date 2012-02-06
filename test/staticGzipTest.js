@@ -177,5 +177,15 @@ module.exports = {
 				res.statusCode.should.not.equal(404);
 			}
 		);
+	},
+	'Ensuring req.url isnt passed to staticSend on error': function() {
+		assert.response(app,
+			{
+				url: '/etc/passwd'
+			},
+			function(res) {
+				res.statusCode.should.equal(404);
+			}
+		);
 	}
 };
