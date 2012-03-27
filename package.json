@@ -6,7 +6,7 @@
   "homepage": "http://www.tomg.co/gzippo",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tomgallacher/gzippo.git"
+    "url": "git://github.com/tomgco/gzippo.git"
   },
   "keywords": [
     "compession",
