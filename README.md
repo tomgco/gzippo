@@ -6,7 +6,7 @@ gzippo currently only supports only gzipping static content files however a rele
 
 ## Notice
 
-Please note that gzippo@0.0.X branch will only be tested for nodejs 0.4, where the soon to be released gzippo@0.1.X will work for node 0.6
+Please note that gzippo@0.0.X branch will only be tested for nodejs 0.4, where as gzippo@0.1.X will work for node 0.6
 
 ## Installation
 
