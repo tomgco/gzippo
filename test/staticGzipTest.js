@@ -147,6 +147,20 @@ module.exports = {
 			}
 		);
 	},
+	'requesting directory returns index.html if found': function() {
+		assert.response(getApp(),
+			{
+				url: '/index_test/',
+				headers: {
+					'Accept-Encoding': "gzip"
+				}
+			},
+			function(res) {
+				res.statusCode.should.equal(200);
+				res.headers.should.have.property('content-length', '366');
+			}
+		);
+	},
 	'ensuring max age is set on resources which are passed to the default static content provider': function() {
 		assert.response(getApp(),
 			{
