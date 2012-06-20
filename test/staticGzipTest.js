@@ -157,6 +157,16 @@ module.exports = {
 			}
 		);
 	},
+	'Normal traversal should work': function() {
+		assert.response(getApp(),
+			{
+				url: '/nom/../tomg.co.png'
+			},
+			function(res) {
+				res.statusCode.should.equal(200);
+			}
+		);
+	},
 	'Ensuring that when viewing a directory a redirect works correctly': function() {
 		assert.response(getApp(),
 			{
@@ -193,7 +203,16 @@ module.exports = {
 				url: '/../prefexTest.js'
 			},
 			function(res) {
-				console.log(res.error);
+				res.statusCode.should.equal(403);
+			}
+		);
+	},
+	'Ensuring you cannot traverse up the directory tree (urlencoded)': function() {
+		assert.response(getApp(),
+			{
+				url: '/%2e%2e/prefexTest.js'
+			},
+			function(res) {
 				res.statusCode.should.equal(403);
 			}
 		);
