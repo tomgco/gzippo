@@ -186,5 +186,16 @@ module.exports = {
 				res.statusCode.should.equal(404);
 			}
 		);
+	},
+	'Ensuring you cannot traverse up the directory tree': function() {
+		assert.response(getApp(),
+			{
+				url: '/../prefexTest.js'
+			},
+			function(res) {
+				console.log(res.error);
+				res.statusCode.should.equal(403);
+			}
+		);
 	}
 };
