@@ -1,6 +1,6 @@
 {
   "name": "gzippo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Tom Gallacher",
   "description": "Gzip middleware for Connect using the native zlib library in node >= 0.6",
   "homepage": "http://www.tomg.co/gzippo",
@@ -28,5 +28,6 @@
     "should": ">= 0.3",
     "connect": ">= 1.8",
     "express": ">= 2.5"
-  }
+  },
+  "optionalDependencies": {}
 }
