@@ -155,17 +155,21 @@ describe('gzippo.staticGzip', function() {
   });
 
   it('should work for paths containing URI-encoded spaces', function(done) {
-    request('/space%20the%20final%20frontier/tomg.co.png', {}, statusCode(200, done));
+    request('/space%20the%20final%20frontier/tomg.co.png', { 'Accept-Encoding': 'gzip' }, statusCode(200, done));
   });
 
 
   it('should not let the user access files outside of the static directory (urlencoded)', function(done) {
-    request('/../test-static.js', {}, statusCode(403, done));
+    request('/../test-static.js', { 'Accept-Encoding': 'gzip' }, statusCode(403, done));
   });
 
 
   it('should not let the user access files outside of the static directory', function(done) {
-    request('/%2e%2e/test-static.js', {}, statusCode(403, done));
+    request('/%2e%2e/test-static.js', { 'Accept-Encoding': 'gzip' }, statusCode(403, done));
+  });
+
+  it('should not let the user access files from root of file system', function(done) {
+    request('/etc/password', { 'Accept-Encoding': 'gzip' }, statusCode(404, done));
   });
 
 
