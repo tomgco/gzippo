@@ -1,59 +1,14 @@
 var assert = require('assert')
-  , http = require('http')
   , fs = require('fs')
   , connect = require('connect')
   , join = require('path').join
-  , gzippo = require('../');
-
-
-var fixtures = join(__dirname, 'fixtures')
+  , gzippo = require('../')
+  ;
+  var fixtures = join(__dirname, 'fixtures')
   , port = 32123
-  , app;
-
-
-// basic request mocking function
-function request(path, headers, callback) {
-  var options = {
-    host: '127.0.0.1',
-    port: port,
-    path: path,
-    headers: headers || {},
-    method: 'GET'
-  };
-
-  var req = http.request(options, function(res) {
-    var buffers = []
-      , total = 0;
-
-    res.on('data', function(buf) {
-      buffers.push(buf);
-      total += buf.length;
-    });
-
-    res.on('end', function() {
-      var data = new Buffer(total)
-        , offset = 0;
-
-      for (var i = 0; i < buffers.length; i++) {
-        buffers[i].copy(data, offset);
-        offset += buffers[i].length;
-      }
-
-      callback(null, res, data);
-    });
-
-    res.on('error', function() {
-      callback(err);
-    });
-  });
-
-  req.on('error', function(err) {
-    callback(err);
-  });
-
-  req.end();
-}
-
+  , app
+  , request = require('./request')({ port: port })
+  ;
 
 // builds a `request` callback which asserts that the response's statusCode is
 // what we expect
@@ -75,16 +30,17 @@ function file(name) {
 
 describe('gzippo.staticGzip', function() {
 
-  // set up a new server for each test
-  beforeEach(function(done) {
-    app = connect.createServer();
-    app.use(gzippo.staticGzip(fixtures));
-    app.listen(port, done);
-  });
+  app = connect.createServer();
+  app.use(gzippo.staticGzip(fixtures));
+  app.listen(port);
 
-  afterEach(function() {
-    app.close();
-  });
+  // set up a new server for each test
+  // beforeEach(function(done) {
+  // });
+
+  // afterEach(function() {
+  //   app.exit();
+  // });
 
 
   it('should gzip static .json file', function(done) {
@@ -92,9 +48,8 @@ describe('gzippo.staticGzip', function() {
       function(err, res, data) {
         if (err) throw err;
         assert.equal(res.statusCode, 200);
-
         assert.equal(res.headers['content-type'], 'application/json; charset=UTF-8');
-        assert.equal(res.headers['content-length'], '69');
+        assert.equal(data.length, '69');
         assert.equal(res.headers['content-encoding'], 'gzip');
 
         assert.deepEqual(data, file('user.gzip'));
@@ -112,7 +67,7 @@ describe('gzippo.staticGzip', function() {
         assert.equal(res.statusCode, 200);
 
         assert.equal(res.headers['content-type'], 'application/javascript; charset=UTF-8');
-        assert.equal(res.headers['content-length'], '35');
+        assert.equal(data.length, '35');
         assert.equal(res.headers['content-encoding'], 'gzip');
 
         assert.deepEqual(data, file('test.js.gzip'));
@@ -127,8 +82,7 @@ describe('gzippo.staticGzip', function() {
     request('/test.js', {}, function(err, res, data) {
       if (err) throw err;
       assert.equal(res.statusCode, 200);
-
-      assert.equal(res.headers['content-length'], '15');
+      assert.equal(data.length, '15');
       assert.deepEqual(data, file('test.js'));
 
       done();
@@ -143,7 +97,7 @@ describe('gzippo.staticGzip', function() {
         assert.equal(res.statusCode, 200);
 
         assert.equal(res.headers['content-type'], 'text/plain; charset=UTF-8');
-        assert.equal(res.headers['content-length'], '2031');
+        assert.equal(data.length, '2031');
         assert.equal(res.headers['content-encoding'], 'gzip');
 
         assert.deepEqual(data, file('utf8.txt.gz'));
@@ -217,63 +171,11 @@ describe('gzippo.staticGzip', function() {
       function(err, res, data) {
         if (err) throw err;
         assert.equal(res.statusCode, 200);
-        assert.equal(res.headers['content-length'], '366');
+        assert.equal(res.headers['content-length'], '616');
 
         done();
       }
     );
-  });
-
-});
-
-
-describe('gzippo.statisGzip (with prefix)', function() {
-
-  it('should successfully serve a .json file with a path prefix', function(done) {
-    var app = connect.createServer();
-    app.use(gzippo.staticGzip(fixtures, { prefix: '/foo' }));
-
-    app.listen(port, function() {
-      request('/foo/user.json', { 'Accept-Encoding': 'gzip' },
-        function(err, res, data) {
-          if (err) throw err;
-          assert.equal(res.statusCode, 200);
-
-          assert.equal(res.headers['content-type'], 'application/json; charset=UTF-8');
-          assert.equal(res.headers['content-length'], '69');
-          assert.equal(res.headers['content-encoding'], 'gzip');
-
-          assert.deepEqual(data, file('user.gzip'));
-
-          app.close();
-          done();
-        }
-      );
-    });
-  });
-
-
-  it('should serve files as expected with a / prefix', function(done) {
-    var app = connect.createServer();
-    app.use(gzippo.staticGzip(fixtures, { prefix: '/' }));
-
-    app.listen(port, function() {
-      request('/user.json', { 'Accept-Encoding': 'gzip' },
-        function(err, res, data) {
-          if (err) throw err;
-          assert.equal(res.statusCode, 200);
-
-          assert.equal(res.headers['content-type'], 'application/json; charset=UTF-8');
-          assert.equal(res.headers['content-length'], '69');
-          assert.equal(res.headers['content-encoding'], 'gzip');
-
-          assert.deepEqual(data, file('user.gzip'));
-
-          app.close();
-          done();
-        }
-      );
-    });
   });
 
 });
