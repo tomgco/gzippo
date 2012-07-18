@@ -18,7 +18,7 @@
 "engines" : { "node" : ">= 0.5 < 0.9" },
 "scripts":
 	{
-		"test": "expresso"
+		"test": "mocha"
 	},
 "main" : "./index.js",
 "dependencies" :
