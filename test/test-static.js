@@ -150,6 +150,9 @@ describe('gzippo.staticGzip', function() {
     );
   });
 
+  it('should redirect on directories', function(done) {
+    request('/js', {}, statusCode(301, done));
+  });
 
   it('should work for paths containing URI-encoded spaces', function(done) {
     request('/space%20the%20final%20frontier/tomg.co.png', {}, statusCode(200, done));
