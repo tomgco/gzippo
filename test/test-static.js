@@ -1,10 +1,11 @@
 var assert = require('assert')
   , fs = require('fs')
-  , connect = require('connect')
+  , express = require('express')
   , join = require('path').join
   , gzippo = require('../')
   ;
-  var fixtures = join(__dirname, 'fixtures')
+
+var fixtures = join(__dirname, 'fixtures')
   , port = 32123
   , app
   , request = require('./request')({ port: port })
@@ -30,8 +31,9 @@ function file(name) {
 
 describe('gzippo.staticGzip', function() {
 
-  app = connect.createServer();
+  app = express();
   app.use(gzippo.staticGzip(fixtures));
+  app.use(app.router);
   app.listen(port);
 
   // set up a new server for each test
@@ -59,6 +61,19 @@ describe('gzippo.staticGzip', function() {
     );
   });
 
+  // it('should get a route', function(done) {
+  //   request('/', { },
+  //     function(err, res, data) {
+  //       console.log(data.toString());
+  //       if (err) throw err;
+  //       assert.equal(res.statusCode, 200);
+
+  //       assert.deepEqual(data, 'ok');
+
+  //       done();
+  //     }
+  //   );
+  // });
 
   it('should gzip static .js file', function(done) {
     request('/test.js', { 'Accept-Encoding': 'gzip' },

@@ -48,4 +48,4 @@ var request = function(path, headers, callback) {
   });
 
   req.end();
-}
+};
