@@ -171,6 +171,16 @@ module.exports = {
 			}
 		);
 	},
+  'max age can be set to 0 to disable caching by the browser': function() {
+		assert.response(staticProvider.createServer(gzippo.staticGzip(fixturesPath, {clientMaxAge: 0})),
+			{
+				url: '/tomg.co.png'
+			},
+			function(res) {
+				assert.includes(res.headers['cache-control'], 'max-age=0');
+			}
+		);
+	},
 	'Normal traversal should work': function() {
 		assert.response(getApp(),
 			{
