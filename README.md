@@ -1,3 +1,5 @@
+# Deprecated Please use https://github.com/expressjs/compression instead
+
 # gzippo [![Build Status](https://secure.travis-ci.org/tomgco/gzippo.png?branch=master)](https://secure.travis-ci.org/tomgco/gzippo)
 
 gzippo pronounced `g-zippo` is a gzip middleware for Connect / expressjs using node-compress for better performance, in node 0.6 and up will be using the new zlib api.
